@@ -77,9 +77,9 @@ function HomePage(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
-    const res = await axios.get("http://localhost:3000/api/movies");
+    const res = await axios.get(`${process.env.API_URL}/api/movies`);
     if (!res.data) {
       const data = [];
       return { props: data };

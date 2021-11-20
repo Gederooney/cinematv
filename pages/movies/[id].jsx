@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getSession } from "next-auth/client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const Movie = (props) => {
   const { res } = props;
@@ -54,11 +54,11 @@ const Movie = (props) => {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { params } = context;
   try {
     const res = await axios.get(
-      `http://localhost:3000/api/movies/${params.id}`
+      `${process.env.API_URL}/api/movies/${params.id}`
     );
     return { props: { res: res.data } };
   } catch (err) {
@@ -66,15 +66,15 @@ export async function getStaticProps(context) {
   }
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      {
-        params: { id: "1636371777683" },
-      },
-    ],
-    fallback: "blocking",
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       {
+//         params: { id: "1636371777683" },
+//       },
+//     ],
+//     fallback: "blocking",
+//   };
+// }
 
 export default Movie;

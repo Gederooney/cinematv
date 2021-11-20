@@ -21,11 +21,9 @@ const fields = {
 };
 
 class Movie {
-  error;
   constructor(fields) {
     this.fields = fields;
   }
-
   getFields() {
     return this.fields;
   }
@@ -74,7 +72,7 @@ class Movie {
         description: this.fields.description.value,
       };
       const { data } = await axios.post(
-        "http://localhost:3000/api/movies/",
+        `${process.env.API_URL}/api/movies/`,
         body
       );
       console.log(data);
