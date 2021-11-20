@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 
 import * as AiIcons from "react-icons/ai";
 import styles from "../assets/css/Sidebar.module.css";

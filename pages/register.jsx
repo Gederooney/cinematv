@@ -1,5 +1,5 @@
-import { useState } from "react";
-import Link from "next/Link";
+import React, { useState } from "react";
+import Link from "next/link";
 import axios from "axios";
 
 const createUser = async (username, password) => {
@@ -8,15 +8,15 @@ const createUser = async (username, password) => {
       username: username,
       password: password,
     });
-    return;
+    return res.data;
   } catch (error) {
     console.log(error.message);
   }
 };
 
 const Register = () => {
-  const hasSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  const isEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const hasSpecialChar = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+  const isEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const hasNumber = /\d/;
   const hasCapitalLetter = /[A-Z]/;
 
@@ -79,7 +79,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!username.error && !password.error && !password2.error) {
-      const res = await createUser(username.value, password.value);
+		const res = await createUser(username.value, password.value);
+		return res.data;
     }
     return;
   };
@@ -90,7 +91,7 @@ const Register = () => {
           <h2 className="py-2">Créer un compte</h2>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
-              Nom d'utilisateur
+              Nom d&apos;utilisateur
             </label>
             <input
               className={

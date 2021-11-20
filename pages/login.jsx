@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Link from "next/Link";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { signIn, getSession } from "next-auth/client";
 
 const Login = () => {
-  const isEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const isEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const [isLoading, setIsLoading] = useState(true);
   const [loadedSession, setLoadedSession] = useState();
   const [formData, setFormData] = useState({
@@ -53,6 +53,7 @@ const Login = () => {
   useEffect(() => {
     (async () => {
       const res = await getSession();
+      setLoadedSession(res);
       setIsLoading(false);
       if (res) window.location.href = "/";
     })();
@@ -66,7 +67,7 @@ const Login = () => {
             <h2 className="py-2">Connexion</h2>
             <div className="mb-3">
               <label htmlFor="username" className="form-label">
-                Nom d'utilisateur
+                Nom d&apos;utilisateur
               </label>
               <input
                 className={

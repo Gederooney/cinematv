@@ -98,7 +98,6 @@ const Createmovie = () => {
     setCanSubmit(!movie.getError());
   };
 
-  const handleSubmit = () => {};
   return (
     <div className="movie_form_wrapper p-3 my-3 col-lg-7 mx-auto">
       <form
@@ -258,7 +257,6 @@ const Createmovie = () => {
               name="media"
               value={formData.media.value}
               onChange={(e) => handleChange(e)}
-              required
               className={
                 (formData.media.required &&
                   formData.media.error &&
@@ -323,7 +321,6 @@ const Createmovie = () => {
             rows="10"
             value={formData.description.value}
             onChange={(e) => handleChange(e)}
-            className="form-control"
             required={formData.description.required}
           ></textarea>
         </div>

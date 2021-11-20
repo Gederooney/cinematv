@@ -27,12 +27,12 @@
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: #fff;
 }
 
 body {
-  background: #222222;
+  background: #222222 !important;
   color: #fff;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -118,8 +118,8 @@ textarea:focus {
 
 .card,
 .video_container {
-  background: rgb(30, 30, 30);
-  box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 5px 0px;
+  background: rgb(30, 30, 30) !important;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 5px 0px !important;
 }
 
 /* admin movie creation form */

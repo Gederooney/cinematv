@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getSession } from "next-auth/client";
 import axios from "axios";
 
@@ -8,14 +8,7 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post("/api/movies", formData);
-    console.log(res.data);
-  };
+
   useEffect(() => {
     (async () => {
       const res = await getSession();

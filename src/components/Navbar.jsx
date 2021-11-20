@@ -3,7 +3,7 @@ import axios from "axios";
 import { getSession, signOut } from "next-auth/client";
 
 import Sidebar from "./Sidebar";
-import Link from "next/Link";
+import Link from "next/link";
 
 import styles from "../assets/css/Nav.module.css";
 

@@ -1,9 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-
-import { navItems } from "../src/data/navData";
-import { getSession } from "next-auth/client";
-import Link from "next/Link";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 function HomePage(props) {
   const { data } = props;
@@ -11,7 +8,7 @@ function HomePage(props) {
 
   useEffect(() => {
     (async () => {
-      const res = await getSession();
+      
       setIsloading(false);
     })();
   }, []);
@@ -83,6 +80,10 @@ function HomePage(props) {
 export async function getStaticProps() {
   try {
     const res = await axios.get("http://localhost:3000/api/movies");
+    if (!res.data) {
+      const data = [];
+      return { props: data };
+    }
     return { props: res.data };
   } catch (error) {
     console.log(error.message);
