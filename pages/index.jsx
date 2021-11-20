@@ -81,13 +81,10 @@ HomePage.propTypes = {
 };
 
 export async function getServerSideProps() {
-  console.log(process.env.API_URL);
   try {
-    const res = await axios.get(`${process.env.API_URL}/api/movies`);
-    if (res.status === 200) {
-      return { props: res.data };
-    }
-    return { props: null };
+    const res = await fetch(`${process.env.API_URL}/api/movies`);
+    const { data } = await res.json();
+    return { props: { data: data } };
   } catch (error) {
     console.log(error.message);
   }
