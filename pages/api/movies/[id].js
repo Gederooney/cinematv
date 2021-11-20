@@ -11,7 +11,7 @@ const singleMovieHandler = async (req, res) => {
         const movie = await Movie.findOne({ id: id });
         if (!movie)
           return res.status(404).json({ sucess: false, message: "Not found" });
-        return res.status(200).json({ sucess: true, data: movie });
+        return res.status(200).json({ sucess: true, movie: movie });
       } catch (err) {
         console.log(err.message);
         return res.status(500).json({ sucess: false, message: err.message });
@@ -45,7 +45,6 @@ const singleMovieHandler = async (req, res) => {
         message: "this request method is not supported",
       });
   }
-  res.status(200).json({ success: true, data: req.query });
 };
 
 export default singleMovieHandler;

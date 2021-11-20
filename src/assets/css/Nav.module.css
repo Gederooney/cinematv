@@ -1,0 +1,42 @@
+.navbar {
+  background: rgb(30, 30, 30);
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 5px 0px;
+  color: #fff;
+
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
+
+.button,
+.navbar {
+  transition: all 0.3s;
+}
+
+.logo > h2 {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-family: "Morgan" !important;
+  font-size: 2rem;
+}
+
+.logo > h2 > .tv {
+  color: red !important;
+  font-family: "Typo";
+}
+
+.logo > a {
+  width: 160px;
+}
+
+.nav_cta {
+  background: rgba(255, 22, 22, 0.8) !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  color: #fff !important;
+}
+
+.menu_bars {
+  margin-left: 2rem;
+  font-size: 2rem !important;
+  background: none;
+}

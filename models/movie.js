@@ -15,9 +15,34 @@ let MovieSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  producer: {
+    type: String,
+  },
+  type: {
+    type: String,
+    required: [true, "The type of the movie is required"],
+  },
+  quality: {
+    type: String,
+  },
+  duration: {
+    type: String,
+  },
+  year: {
+    type: String,
+  },
+  actors: {
+    type: Array,
+  },
+  poster: {
+    type: String,
+  },
   media: {
     type: String,
-    required: [true, "Please add a media"],
+  },
+  isIframe: {
+    type: Boolean,
+    required: [true, "An iframe type is required"],
   },
 });
 const Movie = mongoose.models.Movie || mongoose.model("Movie", MovieSchema);
