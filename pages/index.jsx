@@ -81,6 +81,7 @@ HomePage.propTypes = {
 };
 
 export async function getServerSideProps() {
+  console.log(process.env.API_URL);
   try {
     const res = await axios.get(`${process.env.API_URL}/api/movies`);
     if (res.status === 200) {
