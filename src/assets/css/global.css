@@ -90,7 +90,7 @@ form > h2 {
 .form-control,
 .form-select,
 textarea {
-  background: rgb(102, 102, 102);
+  background: rgb(102, 102, 102) !important;
   font-size: 0.725rem;
   outline: none;
   border: none;
