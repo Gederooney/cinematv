@@ -1,14 +1,13 @@
 import axios from "axios";
 import { getSession } from "next-auth/client";
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-const Movie = (props) => {
-  const { res } = props;
+const Movie = ({ res }) => {
   const { movie } = res;
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(true);
-    const res = getSession();
     setIsLoading(false);
   });
   return (
@@ -52,6 +51,9 @@ const Movie = (props) => {
       </div>
     )
   );
+};
+Movie.propTypes = {
+  res: PropTypes.Object,
 };
 
 export async function getServerSideProps(context) {

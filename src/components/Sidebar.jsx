@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
 import * as AiIcons from "react-icons/ai";
 import styles from "../assets/css/Sidebar.module.css";
 
 import { navItems } from "../data/navData";
-import { Container } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 const Sidebar = (props) => {
   const { display, showSidebar } = props;
@@ -57,10 +57,9 @@ const Sidebar = (props) => {
   );
 };
 
-<ul className={styles.sidebar_items}>
-  <li className={`${styles.sidebar_toggle} ${styles.menu_bars} d-flex`}>
-    <Link href="#"></Link>
-  </li>
-</ul>;
+Sidebar.propTypes = {
+  display: PropTypes.bool.isRequired,
+  showSidebar: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

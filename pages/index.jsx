@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-function HomePage(props) {
-  const { data } = props;
+import PropTypes from "prop-types";
+
+function HomePage({ data }) {
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      
       setIsloading(false);
     })();
   }, []);
@@ -76,6 +76,9 @@ function HomePage(props) {
     )
   );
 }
+HomePage.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 export async function getServerSideProps() {
   try {
