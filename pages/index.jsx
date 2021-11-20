@@ -77,13 +77,13 @@ function HomePage({ data }) {
   );
 }
 HomePage.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export async function getServerSideProps() {
   try {
     const res = await axios.get(`${process.env.API_URL}/api/movies`);
-    if (!res.data) {
+    if (!res.status === 200) {
       const data = [];
       return { props: data };
     }
