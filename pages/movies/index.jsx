@@ -1,6 +1,11 @@
 import React from "react";
+import axios from "axios";
 
-const Movies = () => {
+import PropTypes from "prop-types";
+
+const Movies = (props) => {
+  const { data } = props;
+  console.log(data);
   return (
     <div className="container">
       <div className="row banner my-4">
@@ -14,5 +19,19 @@ const Movies = () => {
     </div>
   );
 };
+
+Movies.propTypes = {
+  data: PropTypes.object,
+};
+
+export async function getServerSideProps() {
+  try {
+    const { data } = await axios.get(`${process.env.API_URL}/api`);
+    return { props: { data: data } };
+  } catch (error) {
+    console.log(error.message);
+    return { props: { data: {} } };
+  }
+}
 
 export default Movies;
