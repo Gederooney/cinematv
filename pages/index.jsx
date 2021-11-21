@@ -82,7 +82,7 @@ HomePage.propTypes = {
 
 export async function getServerSideProps() {
   try {
-    const res = await fetch(`cinematv-ten.vercel.app/api/movies`);
+    const res = await fetch(`${process.env.API_URL}/api/movies`);
     const { data } = await res.json();
     return { props: { data: data } };
   } catch (error) {

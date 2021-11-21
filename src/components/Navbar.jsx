@@ -29,11 +29,11 @@ const Navbar = () => {
       const res = await getSession();
       if (res) {
         const { data } = await axios.get(
-          `http://localhost:3000/api/users/${res.user.email}`
+          `${process.env.API_URL}/api/users/${res.user.email}`
         );
         if (data.sucess) setUser(data.user);
       }
-      if (window.location.href === "http://localhost:3000/")
+      if (window.location.href === "https://cinematv-ten.vercel.app")
         navItems[0].active = true;
       setIsloading(false);
     })();

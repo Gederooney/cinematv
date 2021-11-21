@@ -26,7 +26,8 @@
   box-sizing: border-box;
 }
 
-a {
+a,
+a:visited {
   text-decoration: none !important;
   color: #fff;
 }
@@ -92,8 +93,8 @@ form > h2 {
 textarea {
   background: rgb(102, 102, 102) !important;
   font-size: 0.725rem;
-  outline: none;
-  border: none;
+  outline: none !important;
+  border: none !important;
   color: rgba(255, 255, 255, 0.5) !important;
 }
 
@@ -105,8 +106,8 @@ textarea:focus {
 }
 
 .form_btn {
-  background: rgba(255, 22, 22, 0.8);
-  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 22, 22, 0.8) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
   transition: color 200ms;
 }
 .form_btn:hover {

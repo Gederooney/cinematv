@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
   const { params } = context;
   try {
     const res = await axios.get(
-      `${process.env.API_URL}/api/movies/${params.id}`
+      `https://cinematv-ten.vercel.app/api/movies/${params.id}`
     );
     return { props: { res: res.data } };
   } catch (err) {

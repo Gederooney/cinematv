@@ -8,14 +8,13 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-
   useEffect(() => {
     (async () => {
       const res = await getSession();
       if (!res) window.location.href = "/login";
       else {
         const { data } = await axios.get(
-          `http://localhost:3000/api/users/${res.user.email}`
+          `${process.env.API_URL}/api/users/${res.user.email}`
         );
         if (data.sucess) setUser(data.user);
         !data.user.isAdmin && (window.location.href = "/");
