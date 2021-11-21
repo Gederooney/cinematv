@@ -30,7 +30,7 @@ export async function getServerSideProps() {
     return { props: { data: data } };
   } catch (error) {
     console.log(error.message);
-    return { props: { data: {} } };
+    return { props: { data: { message: error.message } } };
   }
 }
 
