@@ -14,7 +14,7 @@ const Admin = () => {
       if (!res) window.location.href = "/login";
       else {
         const { data } = await axios.get(
-          `${process.env.API_URL}/api/users/${res.user.email}`
+          `https://cinematv-ten.vercel.app/api/users/${res.user.email}`
         );
         if (data.sucess) setUser(data.user);
         !data.user.isAdmin && (window.location.href = "/");

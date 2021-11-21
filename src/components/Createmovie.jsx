@@ -72,7 +72,7 @@ class Movie {
         description: this.fields.description.value,
       };
       const { data } = await axios.post(
-        `${process.env.API_URL}/api/movies/`,
+        `https://cinematv-ten.vercel.app/api/movies/`,
         body
       );
       console.log(data);

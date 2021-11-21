@@ -29,7 +29,7 @@ const Navbar = () => {
       const res = await getSession();
       if (res) {
         const { data } = await axios.get(
-          `${process.env.API_URL}/api/users/${res.user.email}`
+          `https://cinematv-ten.vercel.app/api/users/${res.user.email}`
         );
         if (data.sucess) setUser(data.user);
       }

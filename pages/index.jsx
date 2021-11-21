@@ -1,14 +1,16 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { getSession } from "next-auth/client";
 
 import PropTypes from "prop-types";
 
 function HomePage({ data }) {
   const [isLoading, setIsloading] = useState(true);
-
+  const [loadedSession, setLoadedSession] = useState(null);
   useEffect(() => {
     (async () => {
+      setIsloading(true);
+      setLoadedSession(await getSession());
       setIsloading(false);
     })();
   }, []);
@@ -82,7 +84,7 @@ HomePage.propTypes = {
 
 export async function getServerSideProps() {
   try {
-    const res = await fetch(`${process.env.API_URL}/api/movies`);
+    const res = await fetch(`https://cinematv-ten.vercel.app/api/movies`);
     const { data } = await res.json();
     return { props: { data: data } };
   } catch (error) {

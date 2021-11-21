@@ -45,6 +45,7 @@ const Login = () => {
       });
       console.log(res);
       if (!res.error && res.ok) window.location.href = "/";
+      else setIsLoading(false);
     } catch (error) {
       console.log(error.message);
     }
