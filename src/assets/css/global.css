@@ -193,7 +193,14 @@ video[poster] {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.movie_infos {
+.disclaimer {
+  font-size: 0.7rem;
+  font-family: "Poppins";
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.disclaimer > span {
+  font-size: 0.8rem;
+  font-weight: bold !important;
 }
 
 /* banner */
@@ -208,7 +215,7 @@ video[poster] {
 /* footer */
 .footer {
   color: rgba(255, 255, 255, 0.7) !important;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-family: "Poppins" sans-serif;
   font-weight: bold;
 }

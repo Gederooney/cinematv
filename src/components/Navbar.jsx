@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AppContext from "../../appContexte";
 import axios from "axios";
 import { getSession, signOut } from "next-auth/client";
 
@@ -12,15 +13,14 @@ import * as AiIcons from "react-icons/ai";
 import { navItems } from "../data/navData";
 
 const Navbar = () => {
+  const value = useContext(AppContext);
   const [isLoading, setIsloading] = useState(true);
-
   const [user, setUser] = useState(null);
-
   const [display, setDisplay] = useState(false);
+
   const showSidebar = (e) => {
     setDisplay(!display);
   };
-
   const handleLogout = async (e) => {
     await signOut({});
   };
@@ -85,7 +85,24 @@ const Navbar = () => {
                   </li>
                 )}
               </ul>
-
+              <div className="ms-auto me-auto input-group">
+                <span className="input-group-text" id="basic-addon1">
+                  <AiIcons.AiOutlineSearch />
+                </span>
+                <input
+                  type="text"
+                  name="search"
+                  className="search_bar form-control py-2"
+                  onChange={(e) => {
+                    const res = value.state.movies.filter((movie) =>
+                      movie.title
+                        .toLowerCase()
+                        .includes(e.target.value.toLocaleLowerCase())
+                    );
+                    console.log(res);
+                  }}
+                />
+              </div>
               {!isLoading && !user && (
                 <div className="col-md-3 text-end">
                   <button

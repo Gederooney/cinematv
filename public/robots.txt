@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin
+Disallow: /register
+
+Sitemap: https://cinematv-ten.vercel.app/api/sitemap

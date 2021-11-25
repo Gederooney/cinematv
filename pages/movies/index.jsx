@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 const Movies = (props) => {
   const { data } = props;
-  console.log(data);
   return (
     <div className="container">
       <div className="row banner my-4">
@@ -27,7 +26,7 @@ Movies.propTypes = {
 export async function getServerSideProps() {
   try {
     const { data } = await axios.get(`${process.env.API_URL}/api`);
-	  return { props: { data: data } };
+    return { props: { data: data } };
   } catch (error) {
     console.log(error.message);
     return { props: { data: { message: error.message } } };
