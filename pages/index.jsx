@@ -90,7 +90,7 @@ HomePage.propTypes = {
 
 export async function getServerSideProps() {
   try {
-    const res = await fetch(`https://ronystv.com/movies`);
+    const res = await fetch(`https://ronystv.com/api/movies`);
     const { data } = await res.json();
     return { props: { movies: data } };
   } catch (error) {
