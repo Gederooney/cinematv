@@ -28,7 +28,7 @@ const Sidebar = (props) => {
       <div
         className={`col-12 d-flex align-items-center justify-content-end ${styles.close_mobile}`}
       >
-        <Link href="">
+        <Link href="#">
           <a className={styles.menu_bars} onClick={(e) => showSidebar(e)}>
             <AiIcons.AiOutlineClose />
           </a>

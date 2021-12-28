@@ -72,10 +72,10 @@ class Movie {
         description: this.fields.description.value,
       };
       const { data } = await axios.post(
-        `https://cinematv-ten.vercel.app/api/movies/`,
+        `https://ronystv.com/api/movies/`,
         body
       );
-      console.log(data);
+      data && (window.location.href = "/");
       return;
     } catch (error) {
       return console.log(error);

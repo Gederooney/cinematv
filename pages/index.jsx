@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
-import { getSession } from "next-auth/client";
-
-import AppContext from "../appContexte";
-
 import PropTypes from "prop-types";
+
+import Layout from "../src/components/Layout";
+
 function turn(x) {
-  console.log("here");
   var i = 0;
   while (i < x.length / 2) {
     var temp = x[i];
@@ -17,41 +15,16 @@ function turn(x) {
   return 1;
 }
 
-function HomePage() {
-  const value = useContext(AppContext);
-  const [movies, setMovies] = useState(null);
-  const [isLoading, setIsloading] = useState(true);
-  const [loadedSession, setLoadedSession] = useState(null);
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsloading(true);
-        setLoadedSession(await getSession());
-        const res = await fetch(`https://cinematv-ten.vercel.app/api/movies`, {
-          method: "GET",
-          mode: "cors",
-          headers: {},
-        });
-        const { data } = await res.json();
-        value.setMovies(data);
-        setMovies(data);
-        setIsloading(false);
-      } catch (error) {
-        console.log(error.message);
-        setMovies(null);
-        setIsloading(false);
-      }
-    })();
-  }, []);
+function HomePage({ movies }) {
+
   return (
-    (!isLoading && (
-      <>
+    (
+      <Layout>
         <div className="container">
-          <div className="card mt-4 py-3">
+          <div className="card">
             <div className="card-body">
               <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2  g-2 g-lg-3 g-md-2">
                 {movies &&
-                  turn(movies) &&
                   movies.map((movie) => {
                     return (
                       <div className="col" key={movie.id}>
@@ -107,23 +80,23 @@ function HomePage() {
             </div>
           </div>
         </div>
-      </>
-    )) || <div>Loading</div>
+      </Layout>
+    ) || <div>Loading</div>
   );
 }
-// HomePage.propTypes = {
-//   data: PropTypes.array.isRequired,
-// };
+HomePage.propTypes = {
+  movies: PropTypes.array.isRequired,
+};
 
-// export async function getServerSideProps() {
-//   try {
-//     const res = await fetch(`https://cinematv-ten.vercel.app/api/movies`);
-//     const { data } = await res.json();
-//     return { props: { data: data } };
-//   } catch (error) {
-//     console.log(error.message);
-//     return { props: { data: [] } };
-//   }
-// }
+export async function getServerSideProps() {
+  try {
+    const res = await fetch(`https://ronystv.com/movies`);
+    const { data } = await res.json();
+    return { props: { movies: data } };
+  } catch (error) {
+    console.log(error.message);
+    return { props: { data: [] } };
+  }
+}
 
 export default HomePage;

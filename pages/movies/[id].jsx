@@ -1,35 +1,24 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Layout from "../../src/components/Layout";
 import PropTypes from "prop-types";
 import Head from "next/head";
 
 const Movie = ({ movie }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
-
   return (
-    (!isLoading && (
-      <>
+    (movie && (
+      <Layout>
         <Head>
           <title>{`${movie.title.toUpperCase()} | Cinema TV`}</title>
+          <link rel="shortcut icon" type="image/png" href="/favicon.png" />
           <meta
             name="og:title"
             content={`${movie.title.toUpperCase()} | Cinema TV`}
           />
-          <meta
-            property="og:image"
-            content={
-              movie.isIframe
-                ? `https://img.youtube.com/vi/${movie.poster}/0.jpg`
-                : `https://cdn.videas.fr/v-medias/s3/${movie.poster}`
-            }
-          />
+          <meta property="og:image" content="/favicon.png" />
           <meta
             property="og:url"
-            content={`https://cinematv-ten.vercel.app/movies/${movie.id}`}
+            content={`https://ronystv.com/movies/${movie.id}`}
           />
         </Head>
         <div className="container">
@@ -75,7 +64,7 @@ const Movie = ({ movie }) => {
             </div>
           </div>
         </div>
-      </>
+      </Layout>
     )) || <div>Loading</div>
   );
 };
@@ -84,23 +73,40 @@ Movie.propTypes = {
   movie: PropTypes.object,
 };
 
-export async function getServerSideProps(context) {
-  const { params } = context;
+export async function getStaticProps({ params }) {
   try {
-    const { data } = await axios.get(
-      `https://cinematv-ten.vercel.app/api/movies/${params.id}`,
-      {
-        method: "GET",
-        mode: "cors",
-        headers: {},
-      }
-    );
+    const { data } = await axios.get(`https://ronystv.com/api/movies/${params.id}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {},
+    });
     return {
       props: { id: params.id, movie: data.movie, pageTitle: data.movie.title },
     };
   } catch (err) {
+    console.log(err.message);
     return { notFound: true };
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      {
+        params: { id: "1637521358889" },
+      },
+      {
+        params: { id: "1637584256007" },
+      },
+      {
+        params: { id: "1637926659410" },
+      },
+      {
+        params: { id: "1637926659410" },
+      },
+    ],
+    fallback: true,
+  };
 }
 
 export default Movie;

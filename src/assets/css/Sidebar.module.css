@@ -68,3 +68,16 @@
     display: none;
   }
 }
+
+
+/* sidebar admin pannel */
+
+.sidenav {
+	background: #333;
+	height: 100vh;
+	justify-content: start;
+	position: fixed;
+	top: 4.9rem;
+	transition: 850ms;
+	z-index: 00;
+  }

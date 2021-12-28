@@ -10,8 +10,6 @@ import store from "../redux/store";
 import AppContext from "../appContexte";
 
 //styles
-import "bootstrap/dist/css/bootstrap.css";
-
 import "../src/assets/css/global.css";
 
 const App = ({ Component, pageProps }) => {
@@ -28,9 +26,9 @@ const App = ({ Component, pageProps }) => {
         setMetaTags: setMetaTags,
       }}
     >
-      <Layout className="container">
+      <>
         <Component {...pageProps} />
-      </Layout>
+      </>
     </AppContext.Provider>
   );
 };

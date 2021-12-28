@@ -45,8 +45,11 @@ const moviesHandler = async (req, res) => {
       }
     case "GET":
       try {
-        const data = await Movie.find({});
-        return res.status(200).json({ message: "success", data });
+        const data = await Movie.find({}).sort({ _id: -1 });
+        return res.status(200).json({
+          message: "success",
+          data,
+        });
       } catch (err) {
         console.error(err.message);
         return res.status(500).json({ message: "error", data: err.message });

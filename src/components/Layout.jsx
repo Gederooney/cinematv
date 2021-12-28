@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import PropTypes from "prop-types";
 
-const Layout = ({ children, pageTitle }) => {
+const Layout = ({ children }) => {
   return (
     <>
       <Head>
@@ -16,17 +16,20 @@ const Layout = ({ children, pageTitle }) => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="UTF-8" />
-        <meta property="og:locale" content="fr" />
-        <meta property="og:type" content="video" />
-        <meta name="og:title" content="CINEMA TV FILMS AFRICAINS" />
+        <meta property="og:url" content="https://ronystv.com/" />
+        <meta property="og:type" content="videos" />
+        <meta property="og:title" content="Films nigérian en français" />
         <meta
-          name="og:description"
-          content="Streaming de films africains en français. FIlms Nigérian nollywood"
+          property="og:description"
+          content="Regardez le meilleur du cinéma nollywood sur notre site et passez de bon moments"
+        />
+        <meta
+          property="og:image"
+          content="https://ronystv.com/favicon.png"
         />
       </Head>
       <Navbar />
-      <div className="content">{children}</div>
-
+      <div>{children}</div>
       <Footer />
     </>
   );
