@@ -4,13 +4,32 @@ import Layout from "../../src/components/Layout";
 import PropTypes from "prop-types";
 import Head from "next/head";
 
+
+
+const getMovies = async (id) => {
+  try {
+    const { data } = await axios.get(`https://ronystv.com/api/movies/${id}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {},
+    });
+    return {
+      movie: data.movie,
+    };
+  } catch (err) {
+    console.log(err.message);
+    return { notFound: true };
+  }
+};
+
 const Movie = ({ movie }) => {
+  const [movieCount, setMovieCount] = useState(25);
+  const [postCount, setPostCount] = useState(25);
   return (
     (movie && (
       <Layout>
         <Head>
           <title>{`${movie.title.toUpperCase()} | Cinema TV`}</title>
-          <link rel="shortcut icon" type="image/png" href="/favicon.png" />
           <meta
             name="og:title"
             content={`${movie.title.toUpperCase()} | Cinema TV`}
@@ -73,40 +92,29 @@ Movie.propTypes = {
   movie: PropTypes.object,
 };
 
-export async function getStaticProps({ params }) {
-  try {
-    const { data } = await axios.get(`https://ronystv.com/api/movies/${params.id}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {},
-    });
-    return {
-      props: { id: params.id, movie: data.movie, pageTitle: data.movie.title },
-    };
-  } catch (err) {
-    console.log(err.message);
-    return { notFound: true };
-  }
+export async function getServerSideProps({ params }) {
+	const res = await getMovies(params.id)
+  return { props: res };
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      {
-        params: { id: "1637521358889" },
-      },
-      {
-        params: { id: "1637584256007" },
-      },
-      {
-        params: { id: "1637926659410" },
-      },
-      {
-        params: { id: "1637926659410" },
-      },
-    ],
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       {
+//         params: { id: "1637521358889" },
+//       },
+//       {
+//         params: { id: "1637584256007" },
+//       },
+//       {
+//         params: { id: "1637926659410" },
+//       },
+//       {
+//         params: { id: "1637926659410" },
+//       },
+//     ],
+//     fallback: true,
+//   };
+// }
 
 export default Movie;

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@tryghost/content-api": "^1.5.16",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "jsonwebtoken": "^8.5.1",

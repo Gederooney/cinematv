@@ -2,30 +2,55 @@ import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 
+import GhostContentAPI from "@tryghost/content-api";
+
 import Layout from "../src/components/Layout";
+import Homepagepost from "../src/components/Homepagepost";
+import { AiOutlineConsoleSql } from "react-icons/ai";
 
-function turn(x) {
-  var i = 0;
-  while (i < x.length / 2) {
-    var temp = x[i];
-    x[i] = x[x.length - i - 1];
-    x[x.length - i - 1] = temp;
-    i++;
-  }
-  return 1;
-}
+const postAPI = new GhostContentAPI({
+  url: "https://cinematv-dashboard.herokuapp.com",
+  key: "6bd2a72b398d9d7375300217b5",
+  version: "v3",
+});
 
-function HomePage({ movies }) {
+const getPost = async () => {
+  const res = await fetch(
+    `https://cinematv-dashboard.herokuapp.com/ghost/api/v3/content/posts/?key=6bd2a72b398d9d7375300217b5&limit=4`
+  ).then((res) => res.json());
+  return res.posts;
+};
+const getMovies = async () => {};
 
+function HomePage({ movies, posts }) {
+  useEffect(() => {
+    console.log(posts);
+  }, []);
   return (
     (
       <Layout>
+			
         <div className="container">
+          <div className="card my-3">
+            <h2 className="my-3 ms-3">Histoires Vecues</h2>
+            <div className="card-body">
+              <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2  g-2 g-lg-3 g-md-2">
+                {posts.map((post) => (
+                  <Link href={`posts/${post.slug}`} key={post.id}>
+                    <a className="my-2">
+                      <Homepagepost post={post} />
+                    </a>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
           <div className="card">
+            <h2 className="my-3 ms-3">Films</h2>
             <div className="card-body">
               <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2  g-2 g-lg-3 g-md-2">
                 {movies &&
-                  movies.map((movie) => {
+                  movies.slice(0, 15).map((movie) => {
                     return (
                       <div className="col" key={movie.id}>
                         <div className="card single_movie_card p-2">
@@ -86,13 +111,15 @@ function HomePage({ movies }) {
 }
 HomePage.propTypes = {
   movies: PropTypes.array.isRequired,
+  posts: PropTypes.array,
 };
 
 export async function getServerSideProps() {
   try {
+    const posts = await getPost();
     const res = await fetch(`https://ronystv.com/api/movies`);
     const { data } = await res.json();
-    return { props: { movies: data } };
+    return { props: { movies: data, posts: posts } };
   } catch (error) {
     console.log(error.message);
     return { props: { data: [] } };

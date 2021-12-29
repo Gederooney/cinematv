@@ -219,3 +219,47 @@ video[poster] {
   font-family: "Poppins" sans-serif;
   font-weight: bold;
 }
+
+.post_img {
+  height: 18rem;
+  background-size: cover !important;
+  background-position: center !important;
+  backdrop-filter: cover !important;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.post_title {
+  padding: 1rem;
+  height: 7rem;
+  font-family: "Open sans condensed" sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.article_image {
+  height: 30rem;
+  background-size: cover !important;
+  background-position: center !important;
+  backdrop-filter: cover !important;
+}
+
+.article_body {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.article_body > p {
+  margin: 0 0 2rem 0;
+  font-family: "Poppins" sans-serif;
+}
+.article_body > h3 {
+  color: #fff;
+  font-family: "Open Sans Condensed", sans-serif;
+  margin: 0 0 1rem 0;
+}
+
+.article_title {
+  margin-top: 2rem;
+  font-family: "Open Sans Condensed", sans-serif;
+}
